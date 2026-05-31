@@ -44,6 +44,7 @@ public class UrlService {
         if(urlcontainer.isPresent())
         {
             urlcontainer.get().setCount(urlcontainer.get().getCount()+1);
+            urlRepository.save(urlcontainer.get());
             return urlcontainer.get().getOriginalUrl();
         }
         else
@@ -54,9 +55,6 @@ public class UrlService {
     }
     public Long getAnalytics(String shortcode)
     {
-        Optional<UrlMapping> urlcontainer=urlRepository.findByShortcode(shortcode);
-        return urlcontainer.get().getCount();
+        return urlRepository.findByShortcode(shortcode).get().getCount();
     }
-
-    
 }
