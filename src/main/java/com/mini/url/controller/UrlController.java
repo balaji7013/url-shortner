@@ -24,6 +24,7 @@ public class UrlController {
         if ("Invalid shortcode!".equals(targetUrl)) {
             return ResponseEntity.badRequest().build();
         }
+        urlService.incrementCount(shortcode);
         return ResponseEntity.status(HttpStatus.FOUND)
                              .location(URI.create(targetUrl))
                              .build();
